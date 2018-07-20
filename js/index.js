@@ -20,9 +20,7 @@ $(document).ready(function($) {
     });
 
     if ($(".weather1").length === 1) {
-		console.log(true);
 	   $(".weather1").remove();
-	   console.log($(".weather1").length);
       var weather1 = $('<div class="weather1">');
 
       $(weather1).weather({

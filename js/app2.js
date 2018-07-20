@@ -82,7 +82,6 @@ $(document).ready(function() {
       $("#weather").css("width","200px");
     }
   });
-  console.log("Document is ready");
   var cityName = "";
   var cityNameEdited = "";
   $("input").keyup(function(event) {
@@ -108,7 +107,6 @@ $(document).ready(function() {
         cityNameEdited += "+";
       }
     }
-    console.log(cityNameEdited);
     var queryURL =
       "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" +
       cityNameEdited +
@@ -118,7 +116,6 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      console.log(response.results);
       var div = $("#mapPoints");
       div.empty();
       cityNameEdited = "";
@@ -147,7 +144,6 @@ $(document).ready(function() {
             addressEdited += "+";
           }
         }
-        console.log(addressEdited);
         $.ajax({
           url:
             "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/geocode/json?address=" +
@@ -156,12 +152,8 @@ $(document).ready(function() {
             "&key="+ configure.mapsAPIKey,
           method: "GET"
         }).then(function(response2) {
-          console.log(response2);
           var lat = response2.results[0].geometry.location.lat;
           var lng = response2.results[0].geometry.location.lng;
-          console.log(lat, lng);
-          console.log(myCoordinates);
-          console.log(Math.round(getDistance({lat: lat, lng: lng}, myCoordinates) * 100) / 100 + " miles");
           function initialize(lat, lng) {
             var fenway = { lat: lat, lng: lng };
             var map = new google.maps.Map(document.getElementById("map"), {
@@ -181,11 +173,6 @@ $(document).ready(function() {
             map.setStreetView(panorama);
           }
           initialize(lat, lng);
-          console.log(pointOfInterest.attr("place_id"));
-          console.log(
-            "Reviews:" +
-              response.results[parseInt(pointOfInterest.attr("id"))].rating
-          );
           
           $('<div id="reviews">').insertAfter($("#mainContainer"));
           $(".points").empty();
@@ -197,11 +184,9 @@ $(document).ready(function() {
                 response.results[parseInt(pointOfInterest.attr("id"))].rating +
                 "</h7>"
             );
-            console.log(parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating));
             for(var j = 0; j < parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating); ++j ){
               var star = $("<i class=\"fas fa-star fa-1x\">");
               $("#reviews").append(star.attr("id",j));
-              console.log("In the loop");
             }
             if(parseFloat(response.results[parseInt(pointOfInterest.attr("id"))].rating) - parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating)){
               var star = $("<i class=\"fas fa-star-half-alt fa-1x\">");
@@ -215,10 +200,6 @@ $(document).ready(function() {
           }
 
           $("#reviews").append("<h7>Distance from your location: " + Math.round(getDistance({lat: lat, lng: lng}, myCoordinates) * 100) / 100 + " miles" +"</h7><br><br>")
-          console.log(
-            "Reviews:" +
-              response.results[parseInt(pointOfInterest.attr("id"))].rating
-          );
           $.ajax({
             url:
               "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" +
@@ -243,7 +224,6 @@ $(document).ready(function() {
                 for(var j = 0; j < parseInt(reviews[i].rating); ++j ){
                   var star = $("<i class=\"fas fa-star fa-1x\">");
                   $("#reviews").append(star.attr("id",j));
-                  console.log("In the loop");
                 }
                 if(parseFloat(reviews[i].rating) - parseInt(reviews[i].rating)){
                   var star = $("<i class=\"fas fa-star-half-alt fa-1x\">");
