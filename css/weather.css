@@ -1,0 +1,399 @@
+.weather__widget {
+	padding: 15px;
+	width: 190px;
+	height: 345px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 15px;
+	background-color: #EEEEEE;
+	bottom: 0px;
+	right: 0px;
+}
+.weather__sub {
+	background-color: #EEEEEE;
+	background: url(../img/input.jpg);
+	background-size: 100%;
+	padding: 15px;
+	width: 190px;
+	height: 345px;
+	font-size: 14px;
+	color: #fff;
+	border-radius: 15px;
+}
+.weather__img {
+	width: 75px;
+	height: 75px;
+}
+.weather__name-city {
+	cursor: pointer;
+	text-shadow: black 0.0em 0.0em 0.2em;
+	vertical-align: 1px;
+}
+.weather__checkbox {
+	cursor: pointer;
+}
+.weather__main-temp {
+	font-size: 22px;
+	padding-left: 10px;
+}
+.weather__input {
+	border: none;
+	border-bottom: 2px solid #729AB9;
+	background-color: rgba(0,0,0,0);
+	color: #fff;
+	text-shadow: black 0.0em 0.0em 0.2em;	
+	width: 100%;
+	margin-bottom: 5px;
+}
+.weather__wrapper {
+	position: relative;
+	top: 155px;
+	text-shadow: black 0.0em 0.0em 0.2em;
+}
+.weather__input:focus {
+	outline: none;
+}
+.weather__info {
+	line-height: 20px;
+}
+.weather__input__label {
+	text-shadow: black 0.0em 0.0em 0.2em;	
+}
+.autocomplete-suggestions { 
+	border: 1px solid #999; 
+	background-color: rgba(255, 255, 255, 0.56); 
+	overflow: auto; 
+	color: #438BC0;
+	display: none;
+}
+.autocomplete-suggestion {
+	padding: 2px 5px; 
+	white-space: nowrap; 
+	overflow: hidden; 
+	cursor: pointer;
+}
+.autocomplete-selected { 
+	background: #F0F0F0; 
+}
+.autocomplete-group { 
+	padding: 2px 5px; 
+}
+.autocomplete-suggestions strong { 
+	font-weight: normal; 
+	color: #3399FF; 
+}
+.autocomplete-group strong { 
+	display: block; 
+	border-bottom: 1px solid #000; 
+}
+
+*{
+    box-sizing: border-box;
+}
+html,
+body {
+    height: 175%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+	font-family: 'Merienda', cursive;
+	overflow-y: scroll;
+}
+
+#street-view {
+    height: 100%;
+    z-index: 0;
+}
+
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+
+#map {
+	position: absolute;
+    margin: 5px 0px;
+    border: solid black 1px;
+    max-height: 30%;
+	max-width: 30%;
+	width: 30%;
+	height: 30%;
+    z-index: 10;
+    top: 15%;
+	left: 0%;
+	overflow: visible;
+}
+
+#weather-widget{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+#headerSearch{
+    z-index: 100;
+    top: 0%;
+}
+
+#contactform{
+  position: relative; 
+  z-index: 100; /* The z-index should be higher than Google Maps */
+  width: 100%;
+  background: black;
+  height: 60px;
+  color: white;
+  float: right;
+}
+
+#form{
+  position: relative; 
+  z-index: 100; /* The z-index should be higher than Google Maps */
+  width: 100%;
+  /* margin: 60px auto 0; */
+  padding-top: 10px;
+  padding-bottom: 10px; 
+  background: black;
+  height: 5%;
+  color: white;
+  float: right;
+}
+
+#mainContainer{
+position: absolute; 
+  z-index: 10; /* The z-index should be higher than Google Maps */
+  padding: 10px;
+  background: black;
+  max-height: 25%;
+  color: white;
+  width: 30%;
+  float: right;
+  overflow-y: scroll;
+  top: 50%;
+  left: 0%;
+  height: 15%;
+}
+
+#mapPoints{
+  position: relative; 
+  z-index: 10; /* The z-index should be higher than Google Maps */
+  padding: 10px;
+  background: black;
+  height: auto;
+  color: white;
+  font-size: 10px;
+}
+
+input{
+    color: white;
+}
+
+.gm-style-iw {
+    text-align: center;
+  }
+
+  #pac-input {
+    background-color: #fff;
+    padding: 0 11px 0 13px;
+    width: 50%;
+    font-family: Roboto;
+    font-size: 1em;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    color: black;
+    height: 40%;
+}
+
+#pac-input:focus {
+    border-color: #4d90fe;
+    margin-left: -1px;
+    padding-left: 14px;
+    /* Regular padding-left + 1. */
+    width: 50%;
+}
+
+.pac-container {
+    font-family: Roboto;
+}
+
+#type-selector {
+    color: #fff;
+    background-color: #4d90fe;
+    padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+.pointOfInterest:hover{
+    background-color: green;
+    color: white;
+}
+
+#reviews{
+    z-index: 10;
+    width: 70%;
+    background-color: black;
+    color: white;
+    position: relative; 
+    padding: 10px;
+    height: 30%;
+    top: 65%;
+    left: 0%;
+    overflow-y: scroll;
+    font-family: 'Roboto', sans-serif;
+	font-size: 1.25em;
+}
+
+.weather__widget {
+	padding: 15px;
+	width: 190px;
+	height: 345px;
+	font-size: 0.75em;
+	color: #fff;
+	border-radius: 15px;
+	background-color: #EEEEEE;
+}
+.weather__sub {
+	background-color: #EEEEEE;
+	background: url(../img/input.jpg);
+	background-size: 100%;
+	padding: 15px;
+	width: 190px;
+	height: 345px;
+	font-size: 1em;
+	color: #fff;
+	border-radius: 15px;
+}
+.weather__img {
+	width: 75px;
+	height: 75px;
+}
+.weather__name-city {
+	cursor: pointer;
+	text-shadow: black 0.0em 0.0em 0.2em;
+	vertical-align: 1px;
+}
+.weather__checkbox {
+	cursor: pointer;
+}
+.weather__main-temp {
+	font-size: 22px;
+	padding-left: 10px;
+}
+.weather__input {
+	border: none;
+	border-bottom: 2px solid #729AB9;
+	background-color: rgba(0,0,0,0);
+	color: #fff;
+	text-shadow: black 0.0em 0.0em 0.2em;	
+	width: 100%;
+	margin-bottom: 5px;
+}
+.weather__wrapper {
+	position: relative;
+	top: 155px;
+	text-shadow: black 0.0em 0.0em 0.2em;
+}
+.weather__input:focus {
+	outline: none;
+}
+.weather__info {
+	line-height: 20px;
+}
+.weather__input__label {
+	text-shadow: black 0.0em 0.0em 0.2em;	
+}
+.autocomplete-suggestions { 
+	border: 1px solid #999; 
+	background-color: rgba(255, 255, 255, 0.56); 
+	overflow: auto; 
+	color: #438BC0;
+	display: none;
+}
+.autocomplete-suggestion {
+	padding: 2px 5px; 
+	white-space: nowrap; 
+	overflow: hidden; 
+	cursor: pointer;
+}
+.autocomplete-selected { 
+	background: #F0F0F0; 
+}
+.autocomplete-group { 
+	padding: 2px 5px; 
+}
+.autocomplete-suggestions strong { 
+	font-weight: normal; 
+	color: #3399FF; 
+}
+.autocomplete-group strong { 
+	display: block; 
+	border-bottom: 1px solid #000; 
+}
+
+#weather{
+  z-index: 100;
+  position: absolute; 
+  padding: 10px;
+  background: black;
+  height: 62.5%;
+  color: white;
+  width: 15%;
+  float: right;
+  overflow-y: visible;
+  top: 10%;
+  right: 0%;
+}
+
+.weather1:before, .weather2:before{
+	height: auto;
+	margin: 10px 10px;
+	float: right;
+	}
+
+.weather1:after, .weather2:after{
+height: 45%;
+margin: 70px 10px;
+float: right;
+}
+
+i{
+	z-index: 100;
+	float: left;
+	top: 50%;
+	color: white;
+
+}
+
+.fa-star, .fa-star-half-alt{
+	color: gold;
+	z-index: 10;
+}
+
+.pointOfInterest{
+	font-family: 'Roboto', sans-serif;
+	font-size: 2em;
+}
+
+h5{
+	font-family: 'Merienda', cursive;
+}
+
+#tree{
+	height: 40px;
+	width: 40px;
+	z-index: 1000;
+}
+
+#loginContent{
+	font-family: 'Roboto', sans-serif;
+	font-size: 1em;
+}
+
+#logo-container{
+	width: 40%;
+	font-size: 1.5em;
+}
