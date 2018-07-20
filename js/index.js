@@ -32,7 +32,7 @@ $(document).ready(function($) {
         displayHumidity: true
 	  });
 	  $(weather1).insertBefore($(".weather2"));
-	  $("<br><br>").insertBefore($(".weather2"));
+	  // $("<br><br>").insertBefore($(".weather2"));
     }
   });
 });
