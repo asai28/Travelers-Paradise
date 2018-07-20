@@ -8,6 +8,7 @@ $(document).ready(function($) {
     displayHumidity: true
   });
   console.log($(".weather1").length);
+  $("<br>").insertBefore($(".weather2"));
 
   $("#search").on("click", function() {
     $(".weather1").weather({
@@ -32,7 +33,6 @@ $(document).ready(function($) {
         displayHumidity: true
 	  });
 	  $(weather1).insertBefore($(".weather2"));
-	  // $("<br><br>").insertBefore($(".weather2"));
     }
   });
 });
