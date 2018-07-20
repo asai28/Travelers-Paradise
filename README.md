@@ -18,7 +18,7 @@ The weather will also be displayed.
 
 #### API’s to be used are: 
 *    Google Maps API
-*    Weather API
+*    Google Reviews API
 *    Street View API
 *    Open Weather API
 
