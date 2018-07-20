@@ -1,7 +1,7 @@
 (function($){
 	jQuery.fn.autocomplete = function(options){
 		var defaults = {
-			url: "http://gd.geobytes.com/AutoCompleteCity", 
+			url: "https://gd.geobytes.com/AutoCompleteCity", 
 			dataType: 'jsonp', 
 			minChars: 3,
 			request: 'q',

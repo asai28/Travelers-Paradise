@@ -11,7 +11,7 @@
 		displayWind: false,
 		displayHumidity: false,
 		fixLocation: false,
-		url: 'http://api.openweathermap.org/data/2.5/forecast',
+		url: 'https://api.openweathermap.org/data/2.5/forecast',
 		urlParams: {
 			appid: '92dc516761ab79d7549453f569efe533',
 			cnt: 1,
@@ -94,7 +94,7 @@
 			var element = $(this.element);
 			var promise = $.Deferred();
 			var autocompleteSettings = {
-				url: "http://gd.geobytes.com/AutoCompleteCity", 
+				url: "https://gd.geobytes.com/AutoCompleteCity", 
 				minChars: 3,
 				autocompleteOnSelect: this._onSelect.bind(this, promise)
 			}
