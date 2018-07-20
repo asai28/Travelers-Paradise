@@ -111,7 +111,7 @@ $(document).ready(function() {
       "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?query=" +
       cityNameEdited +
       "+point+of+interest&language=en&key=" +
-      configure.mapsAPIKey;
+      config.mapsAPIKey;
     $.ajax({
       url: queryURL,
       method: "GET"
@@ -149,7 +149,7 @@ $(document).ready(function() {
             "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/geocode/json?address=" +
             addressEdited +
             cityNameEdited +
-            "&key="+ configure.mapsAPIKey,
+            "&key="+ config.mapsAPIKey,
           method: "GET"
         }).then(function(response2) {
           var lat = response2.results[0].geometry.location.lat;
@@ -204,7 +204,7 @@ $(document).ready(function() {
             url:
               "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" +
               pointOfInterest.attr("place_id") +
-              "&key="+ configure.mapsAPIKey,
+              "&key="+ config.mapsAPIKey,
             method: "GET"
           }).then(function(response3) {
             var reviews = response3.result.reviews;
