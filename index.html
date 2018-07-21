@@ -11,57 +11,57 @@
 	<link rel="stylesheet" type="text/css" href="css/weather.css">
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWF3Z0X3vXWWPfHlTilfo9lCc3crPrw4g&callback=getLocation">
 	</script>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+	<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css"> -->
 	<link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+	 crossorigin="anonymous">
 	<script type="text/javascript" src='js/index.js'></script>
 	<script type="text/javascript" src='js/autocomplete.js'></script>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
 	 crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 
 <body id="street-view">
-		<div id="form">
-				<nav class="black lighten-1" role="navigation">
-					<div class="nav-wrapper container">
-						<a id="logo-container" href="#" class="brand-logo" style="float: left">Traveler’s Paradise
-							<img id="tree" src="img/bg.jpg">
-						</a>
-						<ul class="right hide-on-med-and-down">
-							<li style="float: left"><a href="logOut.html">Sign Out</a></li>
-							<li>
-								<div id="contactform" style="float: right; left: 30%">
-								<label for="autocomplete-input">Search City</label>
-								<input type="text" id="pac-input" class="autocomplete controls" placeholder="Tempe" col=40>
-								<button id="search">Search</button>
-							</div>
-							</li>
-						</ul>
-						<div class="collapsible-body"><span></span></div>
-						<ul id="nav-mobile" class="sidenav">
-								<li style="float: left"><a href="logOut.html">Sign Out</a></li>
-								<li>
-									<div id="contactform" style="float: right; left: 30%">
-									<label for="autocomplete-input">Search City</label>
-									<input type="text" id="pac-input" class="autocomplete controls" placeholder="Tempe" col=40>
-									<button id="search">Search</button>
-								</div>
-								</li>
-						</ul>
-						<a href="#" data-target="nav-mobile" class="sidenav-trigger">
-							<i class="material-icons">menu</i>
-						</a>
+	<div id="form">
+		<nav class="navbar navbar-inverse text-white" style="background-color: black; color: white">
+			<div class="container-fluid text-light">
+				<div class="navbar-header text-light">
+					<a class="navbar-brand" href="index.html" style="color: white; font-family: 'Merienda', cursive;">
+						<h3>&NonBreakingSpace;TRAVELLER'S PARADISE
+							<span>
+								<img id="tree" src="img/bg.jpg">
+							</span>
+						</h3>
+
+					</a>
+				</div>
+
+				<div id="contactform" class="navbar-form navbar-left" action="/action_page.php">
+					<div class="input-group">
+						<input type="text" id="pac-input" class="form-control" placeholder="Tempe">&NonBreakingSpace;
+						<span class="input-group-btn">
+							<button id="search" type="submit" class="btn btn-default">Search</button>
+						</span>
 					</div>
-				</nav>
+				</div>
+
+				<ul class="nav navbar-nav">
+					<li class="active">
+						<a href="logOut.html" style="color: white; font-family: 'Merienda', cursive;">Sign Out</a>
+					</li>
+				</ul>
 			</div>
-		
-	
+		</nav>
+	</div>
+
+
 
 	<div id="map"></div>
 	<div id="mainContainer" class="container">
 		<div id="pointsOfInterest">
-			<h5>Top Sight Seeing Places</h5>
+			<h5 style="font-family: 'Merienda', cursive;">Top Sight Seeing Places</h5>
 			<div id="mapPoints"></div>
 		</div>
 	</div>
@@ -70,7 +70,8 @@
 		<i class="fas fa-arrow-right fa-2x"></i>
 		<br>
 		<div class="weather1"></div>
-		<br><br>
+		<br>
+		<br>
 		<div class="weather2"></div>
 	</div>
 	<script type="text/javascript" src='js/app.js'></script>

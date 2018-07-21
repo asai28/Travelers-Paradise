@@ -26,7 +26,6 @@ function showPosition(position) {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view"),
     {
-      //position: { lat: 32.2319, lng: -110.9501 },
       position: {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -57,8 +56,7 @@ function showPosition(position) {
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
-    //{ lat: position.coords.latitude, lng: position.coords.longitude },
-    center: { lat: 32.2319, lng: -110.9501 },
+    center: { lat: position.coords.latitude, lng: position.coords.longitude },
     mapTypeControl: true,
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
@@ -111,7 +109,8 @@ $(document).ready(function() {
       });
     }
   });
-  $("#search").on("click", function() {
+  $("#search").on("click", function(e) {
+    e.preventDefault();
     cityName = $("#pac-input").val().trim();
       $('.weather1').weather({
         city: cityName,

@@ -52,12 +52,6 @@
 	margin-bottom: 5px;
 }
 
-.weather__wrapper {
-	position: relative;
-	top: 155px;
-	text-shadow: black 0.0em 0.0em 0.2em;
-}
-
 .weather__input:focus {
 	outline: none;
 }
@@ -155,7 +149,6 @@ html, body {
 	position: relative;
 	z-index: 100;
 	/* The z-index should be higher than Google Maps */
-	width: 100%;
 	background: black;
 	height: 60px;
 	color: white;
@@ -166,14 +159,12 @@ html, body {
 	position: relative;
 	z-index: 100;
 	/* The z-index should be higher than Google Maps */
-	width: 100%;
 	/* margin: 60px auto 0; */
 	padding-top: 10px;
 	padding-bottom: 10px;
 	background: black;
 	height: 5%;
 	color: white;
-	float: right;
 }
 
 #mainContainer {
@@ -214,13 +205,14 @@ input {
 #pac-input {
 	background-color: #fff;
 	padding: 0 11px 0 13px;
-	width: 50%;
+	width: 200px;
 	font-family: Roboto;
-	font-size: 1em;
+	font-size: 0.75em;
 	font-weight: 300;
 	text-overflow: ellipsis;
 	color: black;
-	height: 40%;
+	height: 30px;
+	margin: 10px 0px;
 }
 
 #pac-input:focus {
@@ -228,7 +220,12 @@ input {
 	margin-left: -1px;
 	padding-left: 14px;
 	/* Regular padding-left + 1. */
-	width: 50%;
+	width: 200px;
+	margin: 10px 0px;
+}
+
+a{
+	color: white;
 }
 
 .pac-container {
@@ -264,7 +261,7 @@ input {
 	left: 0%;
 	overflow-y: scroll;
 	font-family: 'Roboto', sans-serif;
-	font-size: 1.25em;
+	font-size: 1em;
 }
 
 .weather__widget {
@@ -321,7 +318,7 @@ input {
 
 .weather__wrapper {
 	position: relative;
-	top: 155px;
+	top: 35%;
 	text-shadow: black 0.0em 0.0em 0.2em;
 }
 
@@ -410,17 +407,24 @@ i {
 
 .pointOfInterest {
 	font-family: 'Roboto', sans-serif;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 h5 {
 	font-family: 'Merienda', cursive;
+	font-size: 2em;
+}
+
+#about{
+	font-family: 'Merienda', cursive;
+	font-size: 1.25em;
 }
 
 #tree {
 	height: 40px;
 	width: 40px;
 	z-index: 1000;
+	float: left;
 }
 
 #loginContent {
@@ -428,7 +432,32 @@ h5 {
 	font-size: 1em;
 }
 
-#logo-container {
-	width: 40%;
+#navbar-header {
 	font-size: 1.5em;
+	color: white;
+	font-family: 'Merienda', cursive;
+	width: 160px;
+}
+
+.navbar-inverse{
+	width: 100%
+}
+
+#search{
+	width: 75px;
+    height: 30px;
+	font-size: 10px;
+	margin: 10px 0px;
+}
+
+.navbar-nav{
+	bottom: 5px;
+}
+
+a:before{
+	color: white;
+}
+
+a:after{
+	color: white;
 }

@@ -1,4 +1,5 @@
 $(document).ready(function($) {
+
   $(".weather2").weather({
     city: config.curr_city,
     tempUnit: "C",
@@ -8,7 +9,7 @@ $(document).ready(function($) {
     displayHumidity: true
   });
   console.log($(".weather1").length);
-  $("<br>").insertBefore($(".weather2"));
+  $("<br><br>").insertAfter($(".weather2"));
 
   $("#search").on("click", function() {
     $(".weather1").weather({
@@ -32,7 +33,7 @@ $(document).ready(function($) {
         displayWind: true,
         displayHumidity: true
 	  });
-	  $(weather1).insertBefore($(".weather2"));
+	  $(weather1).insertAfter($(".weather2"));
     }
   });
 });
