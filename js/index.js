@@ -1,6 +1,6 @@
 $(document).ready(function($) {
   $(".weather2").weather({
-    city: "Tucson",
+    city: config.curr_city,
     tempUnit: "C",
     displayDescription: true,
     displayMinMaxTemp: true,

@@ -35,6 +35,23 @@ function showPosition(position) {
       zoom: 1
     }
   );
+  var curLat = position.coords.latitude;
+  var curLong = position.coords.longitude;
+
+  $.ajax({
+    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + curLat + "," + curLong + "&sensor=true",
+    method: "GET"
+  }).then(function(response4){
+      var myZipCode = response4.results[0].address_components[response4.results[0].address_components.length - 1].long_name;
+      console.log(myZipCode);
+      $.ajax({
+        url: "https://ZiptasticAPI.com/"+ parseInt(myZipCode),
+        method: "GET" 
+      }).then(function(response5){
+        console.log(JSON.parse(response5).city);
+        config.curr_city = JSON.parse(response5).city;
+      });
+  });
 
   var image =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
