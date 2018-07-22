@@ -210,29 +210,29 @@ $(document).ready(function() {
           $('<div id="reviews">').insertAfter($("#mainContainer"));
           $(".points").empty();
           $("#reviews").empty();
-          $("#reviews").append("<h5 id=\"about\">About Location</h5><br>");
+          $("#reviews").append("<h5 id=\"about\" style=\"left: 0px\">About Location</h5><br>");
           if (response.results[parseInt(pointOfInterest.attr("id"))].rating) {
-            $("#reviews").append(
-              "<h7>Average Reviews: " +
-                response.results[parseInt(pointOfInterest.attr("id"))].rating +
-                "</h7>"
-            );
-            for(var j = 0; j < parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating); ++j ){
-              var star = $("<i class=\"fas fa-star fa-1x\">");
-              $("#reviews").append(star.attr("id",j));
-            }
+            var averageStars = $("<div>");
             if(parseFloat(response.results[parseInt(pointOfInterest.attr("id"))].rating) - parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating)){
               var star = $("<i class=\"fas fa-star-half-alt fa-1x\">");
-              $("#reviews").append(star.attr("id","half"));
+              $(averageStars).append(star.attr("id","half"));
             }
-            $("#reviews").append("<br><br>");
+            for(var j = 0; j < parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating); ++j ){
+              var star = $("<i class=\"fas fa-star fa-1x\" style=\"float: right\">");
+              $(averageStars).append(star.attr("id",j));
+            }
+            $("#reviews").append(
+              "<h7 id=\'averageReview\'>Average Reviews: " +
+                response.results[parseInt(pointOfInterest.attr("id"))].rating + "</h7>"
+            );
+            $(averageStars).insertAfter($("#averageReview"));
           } else {
             $("#reviews").append(
               "<h7>Average Reviews: No reviews available </h7><br><br>"
             );
           }
 
-          $("#reviews").append("<h7>Distance from your location: " + Math.round(getDistance({lat: lat, lng: lng}, myCoordinates) * 100) / 100 + " miles" +"</h7><br><br>")
+          $("#reviews").append("<br><h7>Distance from your location: " + Math.round(getDistance({lat: lat, lng: lng}, myCoordinates) * 100) / 100 + " miles" +"</h7><br><br>")
           $.ajax({
             url:
               "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" +
@@ -249,18 +249,19 @@ $(document).ready(function() {
                   "<h7>" +
                     "Rating: " +
                     reviews[i].rating +
-                    "<br>" +
-                    reviews[i].relative_time_description +
                     "</h7><br>"
                 );
+                var stars = $("<div>");
+                if(parseFloat(reviews[i].rating) - parseInt(reviews[i].rating)){
+                  var star = $("<i class=\"fas fa-star-half-alt fa-1x\" style=\"float: right\">");
+                  $(stars).append(star.attr("id","half"));
+                }
                 for(var j = 0; j < parseInt(reviews[i].rating); ++j ){
                   var star = $("<i class=\"fas fa-star fa-1x\">");
-                  $("#reviews").append(star.attr("id",j));
+                  $(stars).append(star.attr("id",j));
                 }
-                if(parseFloat(reviews[i].rating) - parseInt(reviews[i].rating)){
-                  var star = $("<i class=\"fas fa-star-half-alt fa-1x\">");
-                  $("#reviews").append(star.attr("id","half"));
-                }
+                div.append(stars);
+                div.append("<h7>" + reviews[i].relative_time_description + "</h7><br>")
                 div.append("<h7>" + '"' + reviews[i].text + '"' + "</h7><br>");
                 $("#reviews").append(div);
                 $("#reviews").append("<br>");

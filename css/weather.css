@@ -254,7 +254,7 @@ a{
 	color: white;
 	position: relative;
 	padding: 10px;
-	height: 50vh;
+	height: 35vh;
 	top: 70vh;
 	left: 0%;
 	overflow-y: scroll;
@@ -417,6 +417,7 @@ h5 {
 #about{
 	font-family: 'Merienda', cursive;
 	font-size: 1.25em;
+	margin: 0px 0px;
 }
 
 #tree {
@@ -433,10 +434,10 @@ h5 {
 }
 
 #navbar-header {
-	font-size: 1.5em;
+	font-size: 1.125em;
 	color: white;
 	font-family: 'Merienda', cursive;
-	width: 160px;
+	width: 180px;
 }
 
 .navbar-inverse{
@@ -475,12 +476,12 @@ li.active{
 	position: absolute;
 	padding: 10px;
 	background: black;
-	height: 100%;
+	height: 80%;
 	color: white;
 	width: 50%;
 	float: right;
 	overflow-y: visible;
-	top: 10%;
+	top: 15%;
 	left: 0%;
 	overflow-y: scroll;
 }
