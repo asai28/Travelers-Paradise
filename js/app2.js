@@ -42,12 +42,10 @@ function showPosition(position) {
     method: "GET"
   }).then(function(response4){
       var myZipCode = response4.results[0].address_components[response4.results[0].address_components.length - 1].long_name;
-      console.log(myZipCode);
       $.ajax({
         url: "https://ZiptasticAPI.com/"+ parseInt(myZipCode),
         method: "GET" 
       }).then(function(response5){
-        console.log(JSON.parse(response5).city);
         config.curr_city = JSON.parse(response5).city;
       });
   });
@@ -81,13 +79,16 @@ function showPosition(position) {
 }
 
 $(document).ready(function() {
-  $(".fas").on("click",function(){
+  $("#leftContainer i").css("float","right");
+  $("#weather i").on("click", function(){
+    console.log("clicked");
     if($(this).hasClass("fa-arrow-right")){
       $(this).addClass("fa-arrow-left");
       $(this).removeClass("fa-arrow-right");
       $(".weather1").hide();
       $(".weather2").hide();
-      $("#weather").css("width","40px");
+      $("#weather").css("width","60px");
+      $("#weather").css("overflow-x","hidden");
     }
     else{
       $(this).addClass("fa-arrow-right");
@@ -95,6 +96,22 @@ $(document).ready(function() {
       $(".weather1").show();
       $(".weather2").show();
       $("#weather").css("width","200px");
+    }
+  });
+  $("#leftContainer i").on("click", function(){
+    if($(this).hasClass("fa-arrow-left")){
+      $(this).addClass("fa-arrow-right");
+      $(this).removeClass("fa-arrow-left");
+      $("#map").hide();
+      $("#mainContainer").hide()
+      $("#leftContainer").css("width","60px");
+    }
+    else{
+      $(this).addClass("fa-arrow-left");
+      $(this).removeClass("fa-arrow-right");
+      $("#map").show();
+      $("#mainContainer").show();
+      $("#leftContainer").css("width","50vw");
     }
   });
   var cityName = "";
@@ -225,7 +242,6 @@ $(document).ready(function() {
           }).then(function(response3) {
             var reviews = response3.result.reviews;
             if (reviews.length) {
-              console.log(response3.result.reviews[0]);
               for (var i = 0; i < reviews.length; ++i) {
                 var div = $('<div id="review' + i + '">');
                 div.append("<h7>" + reviews[i].author_name + "</h7><br>");
@@ -253,7 +269,14 @@ $(document).ready(function() {
               $("#reviews").append("<h7>No Reviews</h7>");
             }
           });
-    
+          $("#leftContainer i").on("click", function(){
+            if($(this).hasClass("fa-arrow-left")){
+              $("#reviews").hide();
+            }
+            else{
+              $("#reviews").show();
+            }
+          });
         });
       });
     });

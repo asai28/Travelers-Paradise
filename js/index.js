@@ -8,7 +8,6 @@ $(document).ready(function($) {
     displayWind: true,
     displayHumidity: true
   });
-  console.log($(".weather1").length);
   $("<br><br>").insertAfter($(".weather2"));
 
   $("#search").on("click", function() {
