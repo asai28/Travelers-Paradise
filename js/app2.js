@@ -21,6 +21,7 @@ function getDistance(p1, p2) {
 var panorama;
 function getLocation() {
   if (navigator.geolocation) {
+    console.log(navigator.geolocation);
     navigator.geolocation.getCurrentPosition(showPosition);
   } else {
     console.log("Geolocation is not supported by this browser.");
@@ -41,21 +42,6 @@ function showPosition(position) {
   );
   var curLat = position.coords.latitude;
   var curLong = position.coords.longitude;
-
-  var streetViewService = new google.maps.StreetViewService();
-  var STREETVIEW_MAX_DISTANCE = 100;
-  var latLng = new google.maps.LatLng(curLat, curLong);
-  streetViewService.getPanoramaByLocation(
-    latLng,
-    STREETVIEW_MAX_DISTANCE,
-    function(streetViewPanoramaData, status) {
-      if (status === google.maps.StreetViewStatus.OK) {
-        // ok
-      } else {
-        $("#street-view").css("background-image","url(https://www.publicdomainpictures.net/pictures/30000/velka/tropical-paradise.jpg)");
-      }
-    }
-  );
 
   $.ajax({
     url:
@@ -99,7 +85,7 @@ function showPosition(position) {
     },
     fullscreenControl: true,
     marker: new google.maps.Marker({
-      position: { lat: 32.2319, lng: -110.9501 },
+      position: { lat: curLat, lng: curLong },
       map: map,
       icon: image
     })
@@ -109,7 +95,6 @@ function showPosition(position) {
 $(document).ready(function() {
   $("#leftContainer i").css("float", "right");
   $("#weather i").on("click", function() {
-    console.log("clicked");
     if ($(this).hasClass("fa-arrow-right")) {
       $(this).addClass("fa-arrow-left");
       $(this).removeClass("fa-arrow-right");
