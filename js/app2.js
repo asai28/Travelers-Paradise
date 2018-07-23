@@ -1,17 +1,22 @@
 var rad = function(x) {
-  return x * Math.PI / 180;
+  return (x * Math.PI) / 180;
 };
 
-var myCoordinates = {lat: 33.3030160 ,lng: -111.8394850};
+var myCoordinates = { lat: 33.303016, lng: -111.839485 };
 function getDistance(p1, p2) {
   var R = 6378137; // Earth’s mean radius in meter
   var dLat = rad(p2.lat - p1.lat);
   var dLong = rad(p2.lng - p1.lng);
-  var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(rad(p1.lat)) * Math.cos(rad(p2.lat)) * Math.sin(dLong / 2) * Math.sin(dLong / 2);
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(rad(p1.lat)) *
+      Math.cos(rad(p2.lat)) *
+      Math.sin(dLong / 2) *
+      Math.sin(dLong / 2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  var d = R * c/ 1600 + 4.3;
+  var d = (R * c) / 1600 + 4.3;
   return d; // returns the distance in meter
-};
+}
 
 var panorama;
 function getLocation() {
@@ -37,17 +42,40 @@ function showPosition(position) {
   var curLat = position.coords.latitude;
   var curLong = position.coords.longitude;
 
+  var streetViewService = new google.maps.StreetViewService();
+  var STREETVIEW_MAX_DISTANCE = 100;
+  var latLng = new google.maps.LatLng(curLat, curLong);
+  streetViewService.getPanoramaByLocation(
+    latLng,
+    STREETVIEW_MAX_DISTANCE,
+    function(streetViewPanoramaData, status) {
+      if (status === google.maps.StreetViewStatus.OK) {
+        // ok
+      } else {
+        $("#street-view").css("background-image","url(https://www.publicdomainpictures.net/pictures/30000/velka/tropical-paradise.jpg)");
+      }
+    }
+  );
+
   $.ajax({
-    url: "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + curLat + "," + curLong + "&sensor=true",
+    url:
+      "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
+      curLat +
+      "," +
+      curLong +
+      "&sensor=true",
     method: "GET"
-  }).then(function(response4){
-      var myZipCode = response4.results[0].address_components[response4.results[0].address_components.length - 1].long_name;
-      $.ajax({
-        url: "https://ZiptasticAPI.com/"+ parseInt(myZipCode),
-        method: "GET" 
-      }).then(function(response5){
-        config.curr_city = JSON.parse(response5).city;
-      });
+  }).then(function(response4) {
+    var myZipCode =
+      response4.results[0].address_components[
+        response4.results[0].address_components.length - 1
+      ].long_name;
+    $.ajax({
+      url: "https://ZiptasticAPI.com/" + parseInt(myZipCode),
+      method: "GET"
+    }).then(function(response5) {
+      config.curr_city = JSON.parse(response5).city;
+    });
   });
 
   var image =
@@ -79,39 +107,37 @@ function showPosition(position) {
 }
 
 $(document).ready(function() {
-  $("#leftContainer i").css("float","right");
-  $("#weather i").on("click", function(){
+  $("#leftContainer i").css("float", "right");
+  $("#weather i").on("click", function() {
     console.log("clicked");
-    if($(this).hasClass("fa-arrow-right")){
+    if ($(this).hasClass("fa-arrow-right")) {
       $(this).addClass("fa-arrow-left");
       $(this).removeClass("fa-arrow-right");
       $(".weather1").hide();
       $(".weather2").hide();
-      $("#weather").css("width","60px");
-      $("#weather").css("overflow-x","hidden");
-    }
-    else{
+      $("#weather").css("width", "60px");
+      $("#weather").css("overflow-x", "hidden");
+    } else {
       $(this).addClass("fa-arrow-right");
       $(this).removeClass("fa-arrow-left");
       $(".weather1").show();
       $(".weather2").show();
-      $("#weather").css("width","200px");
+      $("#weather").css("width", "200px");
     }
   });
-  $("#leftContainer i").on("click", function(){
-    if($(this).hasClass("fa-arrow-left")){
+  $("#leftContainer i").on("click", function() {
+    if ($(this).hasClass("fa-arrow-left")) {
       $(this).addClass("fa-arrow-right");
       $(this).removeClass("fa-arrow-left");
       $("#map").hide();
-      $("#mainContainer").hide()
-      $("#leftContainer").css("width","60px");
-    }
-    else{
+      $("#mainContainer").hide();
+      $("#leftContainer").css("width", "60px");
+    } else {
       $(this).addClass("fa-arrow-left");
       $(this).removeClass("fa-arrow-right");
       $("#map").show();
       $("#mainContainer").show();
-      $("#leftContainer").css("width","50vw");
+      $("#leftContainer").css("width", "50vw");
     }
   });
   var cityName = "";
@@ -119,8 +145,10 @@ $(document).ready(function() {
   $("input").keyup(function(event) {
     if (event.keyCode === 13) {
       $("#search").click();
-      cityName = $("#pac-input").val().trim();
-      $('.weather1').weather({
+      cityName = $("#pac-input")
+        .val()
+        .trim();
+      $(".weather1").weather({
         city: cityName,
         autocompleteMinLength: 3
       });
@@ -128,11 +156,13 @@ $(document).ready(function() {
   });
   $("#search").on("click", function(e) {
     e.preventDefault();
-    cityName = $("#pac-input").val().trim();
-      $('.weather1').weather({
-        city: cityName,
-        autocompleteMinLength: 3
-      });
+    cityName = $("#pac-input")
+      .val()
+      .trim();
+    $(".weather1").weather({
+      city: cityName,
+      autocompleteMinLength: 3
+    });
     for (var i = 0; i < cityName.length; ++i) {
       if (cityName[i] !== " ") {
         cityNameEdited += cityName[i];
@@ -182,7 +212,8 @@ $(document).ready(function() {
             "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/geocode/json?address=" +
             addressEdited +
             cityNameEdited +
-            "&key="+ config.mapsAPIKey,
+            "&key=" +
+            config.mapsAPIKey,
           method: "GET"
         }).then(function(response2) {
           var lat = response2.results[0].geometry.location.lat;
@@ -206,24 +237,43 @@ $(document).ready(function() {
             map.setStreetView(panorama);
           }
           initialize(lat, lng);
-          
+
           $('<div id="reviews">').insertAfter($("#mainContainer"));
           $(".points").empty();
           $("#reviews").empty();
-          $("#reviews").append("<h5 id=\"about\" style=\"left: 0px\">About Location</h5><br>");
+          $("#reviews").append(
+            '<h5 id="about" style="left: 0px">About Location</h5><br>'
+          );
           if (response.results[parseInt(pointOfInterest.attr("id"))].rating) {
             var averageStars = $("<div>");
-            if(parseFloat(response.results[parseInt(pointOfInterest.attr("id"))].rating) - parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating)){
-              var star = $("<i class=\"fas fa-star-half-alt fa-1x\">");
-              $(averageStars).append(star.attr("id","half"));
+            if (
+              parseFloat(
+                response.results[parseInt(pointOfInterest.attr("id"))].rating
+              ) -
+              parseInt(
+                response.results[parseInt(pointOfInterest.attr("id"))].rating
+              )
+            ) {
+              var star = $('<i class="fas fa-star-half-alt fa-1x">');
+              $(averageStars).append(star.attr("id", "half"));
             }
-            for(var j = 0; j < parseInt(response.results[parseInt(pointOfInterest.attr("id"))].rating); ++j ){
-              var star = $("<i class=\"fas fa-star fa-1x\" style=\"float: right\">");
-              $(averageStars).append(star.attr("id",j));
+            for (
+              var j = 0;
+              j <
+              parseInt(
+                response.results[parseInt(pointOfInterest.attr("id"))].rating
+              );
+              ++j
+            ) {
+              var star = $(
+                '<i class="fas fa-star fa-1x" style="float: right">'
+              );
+              $(averageStars).append(star.attr("id", j));
             }
             $("#reviews").append(
-              "<h7 id=\'averageReview\'>Average Reviews: " +
-                response.results[parseInt(pointOfInterest.attr("id"))].rating + "</h7>"
+              "<h7 id='averageReview'>Average Reviews: " +
+                response.results[parseInt(pointOfInterest.attr("id"))].rating +
+                "</h7>"
             );
             $(averageStars).insertAfter($("#averageReview"));
           } else {
@@ -232,12 +282,21 @@ $(document).ready(function() {
             );
           }
 
-          $("#reviews").append("<br><h7>Distance from your location: " + Math.round(getDistance({lat: lat, lng: lng}, myCoordinates) * 100) / 100 + " miles" +"</h7><br><br>")
+          $("#reviews").append(
+            "<br><h7>Distance from your location: " +
+              Math.round(
+                getDistance({ lat: lat, lng: lng }, myCoordinates) * 100
+              ) /
+                100 +
+              " miles" +
+              "</h7><br><br>"
+          );
           $.ajax({
             url:
               "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/details/json?placeid=" +
               pointOfInterest.attr("place_id") +
-              "&key="+ config.mapsAPIKey,
+              "&key=" +
+              config.mapsAPIKey,
             method: "GET"
           }).then(function(response3) {
             var reviews = response3.result.reviews;
@@ -246,22 +305,25 @@ $(document).ready(function() {
                 var div = $('<div id="review' + i + '">');
                 div.append("<h7>" + reviews[i].author_name + "</h7><br>");
                 div.append(
-                  "<h7>" +
-                    "Rating: " +
-                    reviews[i].rating +
-                    "</h7><br>"
+                  "<h7>" + "Rating: " + reviews[i].rating + "</h7><br>"
                 );
                 var stars = $("<div>");
-                if(parseFloat(reviews[i].rating) - parseInt(reviews[i].rating)){
-                  var star = $("<i class=\"fas fa-star-half-alt fa-1x\" style=\"float: right\">");
-                  $(stars).append(star.attr("id","half"));
+                if (
+                  parseFloat(reviews[i].rating) - parseInt(reviews[i].rating)
+                ) {
+                  var star = $(
+                    '<i class="fas fa-star-half-alt fa-1x" style="float: right">'
+                  );
+                  $(stars).append(star.attr("id", "half"));
                 }
-                for(var j = 0; j < parseInt(reviews[i].rating); ++j ){
-                  var star = $("<i class=\"fas fa-star fa-1x\">");
-                  $(stars).append(star.attr("id",j));
+                for (var j = 0; j < parseInt(reviews[i].rating); ++j) {
+                  var star = $('<i class="fas fa-star fa-1x">');
+                  $(stars).append(star.attr("id", j));
                 }
                 div.append(stars);
-                div.append("<h7>" + reviews[i].relative_time_description + "</h7><br>")
+                div.append(
+                  "<h7>" + reviews[i].relative_time_description + "</h7><br>"
+                );
                 div.append("<h7>" + '"' + reviews[i].text + '"' + "</h7><br>");
                 $("#reviews").append(div);
                 $("#reviews").append("<br>");
@@ -270,11 +332,10 @@ $(document).ready(function() {
               $("#reviews").append("<h7>No Reviews</h7>");
             }
           });
-          $("#leftContainer i").on("click", function(){
-            if($(this).hasClass("fa-arrow-left")){
+          $("#leftContainer i").on("click", function() {
+            if ($(this).hasClass("fa-arrow-left")) {
               $("#reviews").hide();
-            }
-            else{
+            } else {
               $("#reviews").show();
             }
           });
