@@ -222,8 +222,12 @@ $(document).ready(function() {
             map.setStreetView(panorama);
           }
           initialize(lat, lng);
-
-          $('<div id="reviews">').insertAfter($("#mainContainer"));
+          if($("#reviews").length === 1){
+            $("#reviews").empty();
+          }
+          else{
+            $('<div id="reviews">').insertAfter($("#mainContainer"));
+          }
           $(".points").empty();
           $("#reviews").empty();
           $("#reviews").append(
