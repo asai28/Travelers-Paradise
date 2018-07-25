@@ -2,6 +2,8 @@
 
 ## Project Title: Traveler’s Paradise
 
+A note, for the time being, till this project is deployed on heroku, access it using your own API keys for google api and open weather api.
+
 ### Project Description:
 
 #### SlideShow:
