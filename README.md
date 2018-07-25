@@ -2,11 +2,6 @@
 
 ## Project Title: Traveler’s Paradise
 
-### Team Members:  
-*    Michael Ochoa
-*    Anuhya Sai 
-*    Carol Martin
-
 ### Project Description:
 
 #### SlideShow:
