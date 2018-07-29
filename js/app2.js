@@ -52,6 +52,7 @@ function showPosition(position) {
       "&sensor=true",
     method: "GET"
   }).then(function(response4) {
+    console.log(response4);
     var myZipCode =
       response4.results[0].address_components[
         response4.results[0].address_components.length - 1
@@ -114,15 +115,25 @@ $(document).ready(function() {
     if ($(this).hasClass("fa-arrow-left")) {
       $(this).addClass("fa-arrow-right");
       $(this).removeClass("fa-arrow-left");
-      $("#map").hide();
-      $("#mainContainer").hide();
+      // $("#map").hide();
+      // $("#mainContainer").hide();
+      // $("#reviews").hide();
+      $("#leftContainer").children().hide();
+      $("#leftContainer i").show();
+      console.log('hide command ran')
       $("#leftContainer").css("width", "60px");
+      $("#leftContainer").css("overflow", "hidden");
     } else {
       $(this).addClass("fa-arrow-left");
       $(this).removeClass("fa-arrow-right");
-      $("#map").show();
-      $("#mainContainer").show();
+      // $("#map").show();
+      // $("#mainContainer").show();
+      // $("#reviews").show();
+      $("#leftContainer").children().show();
+      $("#leftContainer i").show();
+      console.log('show command ran');
       $("#leftContainer").css("width", "50vw");
+      $("#leftContainer").css("overflow-y", "scroll");
     }
   });
   var cityName = "";
@@ -288,6 +299,7 @@ $(document).ready(function() {
               config.mapsAPIKey,
             method: "GET"
           }).then(function(response3) {
+            console.log(response3);
             var reviews = response3.result.reviews;
             if (reviews.length) {
               for (var i = 0; i < reviews.length; ++i) {
@@ -319,13 +331,6 @@ $(document).ready(function() {
               }
             } else {
               $("#reviews").append("<h7>No Reviews</h7>");
-            }
-          });
-          $("#leftContainer i").on("click", function() {
-            if ($(this).hasClass("fa-arrow-left")) {
-              $("#reviews").hide();
-            } else {
-              $("#reviews").show();
             }
           });
         });
