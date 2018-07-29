@@ -1,3 +1,3 @@
 var config = {
-    mapsAPIKey: mapsAPIKey
+    mapsAPIKey: mapsAPIKey //Provide your own API key for the website to run smoothly
 }
