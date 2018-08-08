@@ -18,5 +18,38 @@ The weather will also be displayed.
 *    Google Reviews API
 *    Street View API
 *    Open Weather API
+*    ZipTastic API
 
 Additions would be done depending on time available.
+
+#### Glimpse of the site:
+
+The user authentication has been done using firebase. 
+
+![Login Page](/img/Login.png)
+
+Once a user signs in, the website gives a push notification to the user to allow location access. 
+
+![Allow Location](/img/AllowLocation.png)
+
+Once the user presses allow, the background and weather of the user's location is shown.
+
+![User Location](/img/HomeLocation.png)
+
+The user needs to type in the name of the city to travel and then tourist spots are populated. On clicking on a tourist spot, the background changes as follows. Drag around the screen to get a 360 degree view.
+
+![New Location](/img/PointOfInterest.png)
+
+Drag the man like figure on the google map to view nearby places.
+
+![Drag pegman](/img/Drag.png)
+
+Enjoy the view!
+
+![Street View](/img/NearbyStreetView.png)
+
+Once done using the page, log out.
+
+![Sign Out](/img/SignOut.png)
+
+
